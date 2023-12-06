@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="MAIN" Id="{72e0237f-1da5-48a1-99eb-6b55bdc0e73e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+    RandomDintValue		: LREAL;
+	fbDRAND				: DRAND;
+	
+	start				: BOOL;
+	timer1				: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[timer1(IN := start, PT := T#1S,);
+
+start := TRUE;
+IF timer1.Q THEN
+	fbDRAND(Seed := 1);
+	
+	RandomDintValue := 100*fbDRAND.Num;
+	start := FALSE;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="29" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="35" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
